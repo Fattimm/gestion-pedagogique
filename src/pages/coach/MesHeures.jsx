@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '../../store/authStore';
 import api from '../../api/axios';
+import PageHeader from '../../components/PageHeader';
 
 export default function MesHeures() {
   const [data, setData] = useState(null);
@@ -22,26 +23,18 @@ export default function MesHeures() {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-4 items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Mes heures</h1>
-        <select
-          value={mois}
-          onChange={(e) => setMois(e.target.value)}
-          className="border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
+      <PageHeader title="Mes heures">
+        <select value={mois} onChange={e => setMois(e.target.value)}
+          className="bg-white text-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none shadow-sm">
           {Array.from({ length: 12 }, (_, i) => (
             <option key={i + 1} value={i + 1}>
               {new Date(0, i).toLocaleString('fr-FR', { month: 'long' })}
             </option>
           ))}
         </select>
-        <input
-          type="number"
-          value={annee}
-          onChange={(e) => setAnnee(e.target.value)}
-          className="border rounded-lg px-4 py-2 text-sm w-24 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-      </div>
+        <input type="number" value={annee} onChange={e => setAnnee(e.target.value)}
+          className="bg-white text-gray-700 rounded-lg px-4 py-2 text-sm w-24 focus:outline-none shadow-sm" />
+      </PageHeader>
 
       {loading && <p className="text-gray-500">Chargement...</p>}
 

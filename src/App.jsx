@@ -1,11 +1,18 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
+import MotDePasseOublie from './pages/MotDePasseOublie';
 import PrivateRoute from './components/PrivateRoute';
 import ManagerLayout from './pages/manager/ManagerLayout';
+import Dashboard from './pages/manager/Dashboard';
 import Users from './pages/manager/Users';
 import Cours from './pages/manager/Cours';
 import Sessions from './pages/manager/Sessions';
 import Inscriptions from './pages/manager/Inscriptions';
+import Classes from './pages/manager/Classes';
+import Salles from './pages/manager/Salles';
+import Modules from './pages/manager/Modules';
+import Semestres from './pages/manager/Semestres';
+import AnneeScolaires from './pages/manager/AnneeScolaires';
 import CmLayout from './pages/cm/CmLayout';
 import CmSessions from './pages/cm/Sessions';
 import CmAbsences from './pages/cm/Absences';
@@ -25,6 +32,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/mot-de-passe-oublie" element={<MotDePasseOublie />} />
 
         {/* MANAGER */}
         <Route path="/manager" element={
@@ -32,11 +40,17 @@ export default function App() {
             <ManagerLayout />
           </PrivateRoute>
         }>
-          <Route index element={<Navigate to="users" replace />} />
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="users" element={<Users />} />
           <Route path="cours" element={<Cours />} />
           <Route path="sessions" element={<Sessions />} />
           <Route path="inscriptions" element={<Inscriptions />} />
+          <Route path="classes"      element={<Classes />} />
+          <Route path="salles"       element={<Salles />} />
+          <Route path="modules"      element={<Modules />} />
+          <Route path="semestres"    element={<Semestres />} />
+          <Route path="annees"       element={<AnneeScolaires />} />
         </Route>
 
         {/* CM */}
